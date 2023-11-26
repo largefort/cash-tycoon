@@ -5,14 +5,8 @@ let upgrades = parseInt(localStorage.getItem('upgrades')) || 0;
 let upgradeCost = 10;
 
 function updateDisplay() {
-    // Set up the animation for dollar sign
-    animateText('dollar-sign', '$');
-
-    // Set up the animation for cash
-    animateNumber('cash', cash.toFixed(2));
-
-    // Update other elements without animation
-    document.getElementById('cps').textContent = cps.toFixed(2);
+    document.getElementById('cash').textContent = '$' + cash.toFixed(2);
+    document.getElementById('cps').textContent = '$' + cps.toFixed(2);
     document.getElementById('upgrades').textContent = upgrades;
 }
 
@@ -37,7 +31,7 @@ function purchaseUpgrade() {
 }
 
 function earnPerSecond() {
-    cash += cps / 10; // Update every 100 milliseconds (0.1 seconds)
+    cash += cps; // Update every second
     updateDisplay();
     saveGameState();
 }
@@ -46,33 +40,6 @@ function saveGameState() {
     localStorage.setItem('cash', cash);
     localStorage.setItem('cps', cps);
     localStorage.setItem('upgrades', upgrades);
-}
-
-// Function to animate text
-function animateText(elementId, newText) {
-    const element = document.getElementById(elementId);
-
-    // Set up the animation
-    const animation = anime({
-        targets: element,
-        innerHTML: [element.innerHTML, newText],
-        easing: 'linear',
-        duration: 1000 // Animation duration in milliseconds
-    });
-}
-
-// Function to animate numbers using Anime.js
-function animateNumber(elementId, newValue) {
-    const element = document.getElementById(elementId);
-
-    // Set up the animation
-    const animation = anime({
-        targets: element,
-        innerHTML: [element.innerHTML, newValue],
-        round: 2, // Round to two decimal places
-        easing: 'linear',
-        duration: 1000 // Animation duration in milliseconds
-    });
 }
 
 // Function to show pop-up text
