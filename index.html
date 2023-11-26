@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <title>Idle Cash Tycoon</title>
+    <!-- Include Anime.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
     <section class="hero is-info is-fullheight">
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">Idle Cash Tycoon</h1>
-                <p class="subtitle">Current Cash: $<span id="cash">0</span></p>
+                <p class="subtitle">
+                    <span id="cash-container">
+                        <span id="dollar-sign">$</span><span id="cash">0</span>
+                    </span>
+                </p>
                 <button class="button is-success" onclick="clickCash()">Click to Earn Cash</button>
                 <p class="subtitle">Cash per second: $<span id="cps">0</span></p>
                 <p class="subtitle">Upgrades Purchased: <span id="upgrades">0</span></p>
                 <button class="button is-info" onclick="purchaseUpgrade()">Purchase Upgrade ($10)</button>
+                <div id="popup-text" class="popup-text"></div>
             </div>
         </div>
     </section>
