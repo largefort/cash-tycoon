@@ -5,7 +5,19 @@ let upgrades = parseInt(localStorage.getItem('upgrades')) || 0;
 let upgradeCost = 10;
 
 function updateDisplay() {
-    document.getElementById('cash').textContent = cash.toFixed(2);
+    // Get the cash element
+    const cashElement = document.getElementById('cash');
+
+    // Set up the animation
+    const cashAnimation = anime({
+        targets: cashElement,
+        innerHTML: [cashElement.innerHTML, cash.toFixed(2)],
+        round: 2, // Round to two decimal places
+        easing: 'linear',
+        duration: 1000 // Animation duration in milliseconds
+    });
+
+    // Update other elements without animation
     document.getElementById('cps').textContent = cps.toFixed(2);
     document.getElementById('upgrades').textContent = upgrades;
 }
