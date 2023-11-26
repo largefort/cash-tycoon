@@ -5,8 +5,8 @@ let upgrades = parseInt(localStorage.getItem('upgrades')) || 0;
 let upgradeCost = 10;
 
 function updateDisplay() {
-    document.getElementById('cash').textContent = '$' + cash.toFixed(2);
-    document.getElementById('cps').textContent = '$' + cps.toFixed(2);
+    document.getElementById('cash').textContent = cash.toFixed(2);
+    document.getElementById('cps').textContent = cps.toFixed(2);
     document.getElementById('upgrades').textContent = upgrades;
 }
 
@@ -14,7 +14,6 @@ function clickCash() {
     cash += clickValue;
     updateDisplay();
     saveGameState();
-    showPopupText(clickValue); // Show the pop-up with the earned amount
 }
 
 function purchaseUpgrade() {
@@ -31,7 +30,7 @@ function purchaseUpgrade() {
 }
 
 function earnPerSecond() {
-    cash += cps; // Update every second
+    cash += cps / 10; // Update every 100 milliseconds (0.1 seconds)
     updateDisplay();
     saveGameState();
 }
@@ -42,20 +41,8 @@ function saveGameState() {
     localStorage.setItem('upgrades', upgrades);
 }
 
-// Function to show pop-up text
-function showPopupText(amount) {
-    const popupText = document.getElementById('popup-text');
-    popupText.textContent = `+${amount.toFixed(2)}`;
-    popupText.classList.add('show');
-
-    // Hide the pop-up after a delay (e.g., 2 seconds)
-    setTimeout(() => {
-        popupText.classList.remove('show');
-    }, 2000);
-}
-
 // Automatically earn cash per second
-setInterval(earnPerSecond, 1000); // Updated to 1000 milliseconds (1 second)
+setInterval(earnPerSecond, 100); // Changed from 1000 to 100 for smoother updates
 
 // Save the game state every 5 seconds
 setInterval(saveGameState, 5000);
