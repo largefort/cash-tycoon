@@ -88,7 +88,7 @@ function showPopupText(amount) {
 }
 
 // Automatically earn cash per second
-setInterval(earnPerSecond, 1000); // Changed from 1000 to 100 for smoother updates
+setInterval(earnPerSecond, 1000); // Updated to 1000 milliseconds (1 second)
 
 // Save the game state every 5 seconds
 setInterval(saveGameState, 5000);
