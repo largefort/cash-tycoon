@@ -8,16 +8,33 @@
     <title>Idle Cash Tycoon</title>
 </head>
 <body>
-    <section class="hero is-info is-fullheight">
+
+    <section class="hero is-primary is-fullheight">
         <div class="hero-body">
-            <div class="container">
-                <h1 class="title">Idle Cash Tycoon</h1>
-                <p class="subtitle">Current Cash: $<span id="cash">0</span></p>
-                <button class="button is-success" onclick="clickCash()">Click to Earn Cash</button>
-                <p class="subtitle">Cash per second: $<span id="cps">0</span></p>
-                <p class="subtitle">Upgrades Purchased: <span id="upgrades">0</span></p>
-                <button class="button is-info" onclick="purchaseUpgrade()">Purchase Upgrade ($10)</button>
-                <button class="button is-danger" onclick="resetProgress()">Reset Progress</button>
+            <div class="container has-text-centered">
+                <h1 class="title is-size-1">Idle Cash Tycoon</h1>
+                <p class="subtitle is-size-4">Current Cash: $<span id="cash">0</span></p>
+                
+                <div class="columns is-centered">
+                    <div class="column is-one-third">
+                        <button class="button is-success is-fullwidth" onclick="clickCash()">Click to Earn Cash</button>
+                    </div>
+                </div>
+
+                <p class="subtitle is-size-4">Cash per second: $<span id="cps">0</span></p>
+
+                <div class="columns is-centered">
+                    <div class="column is-one-third">
+                        <p class="subtitle is-size-5">Upgrades Purchased: <span id="upgrades">0</span></p>
+                        <button class="button is-info is-fullwidth" onclick="purchaseUpgrade()">Purchase Upgrade ($10)</button>
+                    </div>
+                </div>
+
+                <div class="columns is-centered">
+                    <div class="column is-one-third">
+                        <button class="button is-danger is-fullwidth" onclick="resetProgress()">Reset Progress</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
