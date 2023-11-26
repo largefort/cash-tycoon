@@ -1,21 +1,14 @@
 .popup-text {
-    display: none;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 24px;
     color: green;
-    animation: fadeInOut 2s ease-in-out;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
 .popup-text.show {
-    display: block;
-}
-
-@keyframes fadeInOut {
-    0% { opacity: 0; }
-    25% { opacity: 1; }
-    75% { opacity: 1; }
-    100% { opacity: 0; }
+    opacity: 1;
 }
