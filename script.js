@@ -1,4 +1,3 @@
-
 let cash = parseFloat(localStorage.getItem('cash')) || 0;
 let clickValue = 1;
 let cps = parseFloat(localStorage.getItem('cps')) || 0;
@@ -28,19 +27,6 @@ function purchaseUpgrade() {
     } else {
         alert("Not enough cash to purchase the upgrade!");
     }
-}
-
-function resetProgress() {
-    // Reset all game variables to their initial values
-    cash = 0;
-    clickValue = 1;
-    cps = 0;
-    upgrades = 0;
-    upgradeCost = 10;
-
-    // Update the display and save the game state
-    updateDisplay();
-    saveGameState();
 }
 
 function earnPerSecond() {
