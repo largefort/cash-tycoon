@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="styles.css">
     <title>Idle Cash Tycoon</title>
+    
+    <!-- Add this script tag to set the target FPS -->
+    <script>
+        window.targetFPS = 60; // Set the target frame rate
+    </script>
 </head>
+
 <body>
 
     <section class="hero is-primary is-fullheight">
@@ -14,7 +21,7 @@
             <div class="container has-text-centered">
                 <h1 class="title is-size-1">Idle Cash Tycoon</h1>
                 <p class="subtitle is-size-4">Current Cash: $<span id="cash">0</span></p>
-                
+
                 <div class="columns is-centered">
                     <div class="column is-one-third">
                         <button class="button is-success is-fullwidth" onclick="clickCash()">Click to Earn Cash</button>
@@ -35,4 +42,6 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
+
