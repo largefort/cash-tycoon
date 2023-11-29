@@ -5,7 +5,7 @@ let upgrades = parseInt(localStorage.getItem('upgrades')) || 0;
 let upgradeCost = 10;
 
 let lastTimestamp = 0;
-const targetFPS = 30; // Set the target frame rate
+const targetFPS = 60; // Set the target frame rate
 
 function updateDisplay() {
     document.getElementById('cash').textContent = cash.toFixed(2);
