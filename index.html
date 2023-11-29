@@ -4,14 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.10.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/legendary-css@1.2.0/dist/legendary.min.css"> <!-- Replace with the correct version -->
     <link rel="stylesheet" href="styles.css">
-    <title>Idle Cash Tycoon</title>
-    
-    <!-- Add this script tag to set the target FPS -->
+    <style>
+        body {
+            perspective: 1000px;
+            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+        }
+
+        .hero {
+            background-color: #3498db;
+        }
+
+        .hero-body {
+            transform: rotateX(30deg);
+            padding: 3rem 1.5rem;
+        }
+
+        .title {
+            color: #fff;
+        }
+
+        .subtitle,
+        .button {
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #2ecc71;
+            color: #fff;
+            border-color: #2ecc71;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #27ae60;
+            border-color: #27ae60;
+        }
+
+        .subtitle {
+            color: #ecf0f1;
+        }
+    </style>
     <script>
-        window.targetFPS = 60; // Set the target frame rate
+        // Set the target frame rate
+        window.targetFPS = 30;
     </script>
+    <title>Idle Cash Tycoon</title>
 </head>
 
 <body>
@@ -44,4 +86,3 @@
 </body>
 
 </html>
-
