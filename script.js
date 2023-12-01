@@ -14,7 +14,7 @@ function updateDisplay() {
 }
 
 function clickCash() {
-    cash += clickValue;
+    cash += clickValue + (0.1 * upgrades); // More cash per click with more upgrades
     updateDisplay();
     saveGameState();
 }
@@ -23,8 +23,8 @@ function purchaseUpgrade() {
     if (cash >= upgradeCost) {
         cash -= upgradeCost;
         upgrades++;
-        cps += 0.1;
-        upgradeCost *= 2;
+        cps += 0.1 + (0.02 * upgrades); // Incremental increase in cps
+        upgradeCost += 5 + (2 * upgrades); // Less steep scaling for upgrade costs
         updateDisplay();
         saveGameState();
     } else {
