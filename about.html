@@ -6,32 +6,57 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="styles.css">
     <title>Idle Cash Tycoon - About</title>
-</head>
-<body class="has-background-light">
-    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="index.html">Home</a>
-            <a class="navbar-item" href="leaderboard.html">Leaderboard</a>
-            <a class="navbar-item" href="about.html">About</a>
-        </div>
-    </nav>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; /* Consistent background color */
+        }
 
+        .bottom-tabs {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #00d1b2;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .bottom-tabs a {
+            color: white;
+        }
+    </style>
+</head>
+<body>
     <section class="section">
         <div class="container">
             <h1 class="title has-text-centered">About Idle Cash Tycoon</h1>
             <div class="content">
                 <p>Welcome to Idle Cash Tycoon! This game is a fun and engaging way to pass the time as you build your virtual business empire. Click to earn cash, purchase upgrades, and watch your profits soar!</p>
-                <p>Developed by [Jafet Egill], Idle Cash Tycoon is designed to provide a casual yet addictive gaming experience. We hope you enjoy playing as much as i enjoyed creating it.</p>
+                <p>Developed by [jafet egill], Idle Cash Tycoon is designed to provide a casual yet addictive gaming experience. We hope you enjoy playing as much as we enjoyed creating it.</p>
                 <h2 class="subtitle">Features</h2>
                 <ul>
                     <li>Simple and intuitive gameplay</li>
                     <li>Progressive difficulty with each upgrade</li>
                     <li>Compete with others on the leaderboard</li>
                 </ul>
-                <h2 class="subtitle">Contact Me</h2>
-                <p>For more information, suggestions, or feedback, feel free to contact Me at <a href="mailto:largefort@gmail.com">largefort@gmail.com</a>.</p>
+                <h2 class="subtitle">Contact Us</h2>
+                <p>For more information, suggestions, or feedback, feel free to contact me at <a href="mailto:largefort@gmail.com">largefort@gmail.com</a>.</p>
             </div>
         </div>
     </section>
+
+    <!-- Bottom Navigation Tabs -->
+    <div class="bottom-tabs">
+        <div class="tabs is-centered is-boxed is-fullwidth">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </div>
+
 </body>
 </html>
