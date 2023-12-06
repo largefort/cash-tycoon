@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Idle Cash Tycoon - Leaderboard</title>
+</head>
+<body class="has-background-light">
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="index.html">Home</a>
+            <a class="navbar-item" href="leaderboard.html">Leaderboard</a>
+            <a class="navbar-item" href="about.html">About</a>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <h1 class="title has-text-centered">Leaderboard</h1>
+            <div id="leaderboard" class="content">
+                <!-- Leaderboard will be populated here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Load and display leaderboard from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+            const leaderboardElement = document.getElementById('leaderboard');
+            leaderboardElement.innerHTML = '<ol>' + 
+                leaderboard.map(entry => `<li>${entry.cash.toFixed(2)} - ${new Date(entry.timestamp).toLocaleString()}</li>`).join('') + 
+                '</ol>';
+        });
+    </script>
+</body>
+</html>
