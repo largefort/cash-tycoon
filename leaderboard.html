@@ -6,16 +6,29 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="styles.css">
     <title>Idle Cash Tycoon - Leaderboard</title>
-</head>
-<body class="has-background-light">
-    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="index.html">Home</a>
-            <a class="navbar-item" href="leaderboard.html">Leaderboard</a>
-            <a class="navbar-item" href="about.html">About</a>
-        </div>
-    </nav>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; /* Consistent background color */
+        }
 
+        .bottom-tabs {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #00d1b2;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .bottom-tabs a {
+            color: white;
+        }
+    </style>
+</head>
+<body>
     <section class="section">
         <div class="container">
             <h1 class="title has-text-centered">Leaderboard</h1>
@@ -24,6 +37,17 @@
             </div>
         </div>
     </section>
+
+    <!-- Bottom Navigation Tabs -->
+    <div class="bottom-tabs">
+        <div class="tabs is-centered is-boxed is-fullwidth">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </div>
 
     <script>
         // Load and display leaderboard from localStorage
