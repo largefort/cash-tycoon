@@ -45,7 +45,6 @@
                 <p class="subtitle is-size-4">Cash per second: $<span id="cps">0</span></p>
                 <div class="columns is-centered">
                     <div class="column is-one-third">
-                        <!-- Upgrades Purchased Counter -->
                         <p class="subtitle is-size-5">Upgrades Purchased: <span id="upgrades">0</span></p>
                         <button class="button is-info is-fullwidth" onclick="purchaseUpgrade()">Purchase Upgrade ($10)</button>
                     </div>
@@ -66,5 +65,22 @@
     </div>
 
     <script src="script.js"></script>
+
+    <!-- AdMob Plus Cordova Plugin Integration -->
+    <script>
+        document.addEventListener('deviceready', function() {
+            admob.banner.show({
+                id: {
+                    // Replace with your Ad Unit ID
+                    android: 'ca-app-pub-5816082932921993~1269022085',
+                    ios: 'ca-app-pub-xxx/xxx',
+                },
+            }).then(() => {
+                console.log('Banner Ad loaded successfully');
+            }).catch(error => {
+                console.error('Banner Ad failed to load', error);
+            });
+        }, false);
+    </script>
 </body>
 </html>
