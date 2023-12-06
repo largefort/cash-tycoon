@@ -25,7 +25,7 @@ function purchaseUpgrade() {
     if (cash >= upgradeCost) {
         cash -= upgradeCost;
         upgrades++;
-        cps += 0.1 + (0.02 * upgrades);
+        cps += 0.1 + (0.12 * upgrades);
         upgradeCost += 5 + (2 * upgrades);
         updateDisplay();
         saveGameState();
