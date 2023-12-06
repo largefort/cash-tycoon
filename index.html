@@ -14,7 +14,7 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5; /* Restored original background color */
+            background-color: #f5f5f5; /* Consistent background color */
         }
 
         .bottom-tabs {
@@ -28,6 +28,20 @@
 
         .bottom-tabs a {
             color: white;
+        }
+
+        .container {
+            padding: 10px; /* Added padding for smaller screens */
+        }
+
+        @media (max-width: 768px) {
+            .button {
+                margin-top: 10px; /* Add space between buttons on small screens */
+            }
+
+            .hero-body {
+                padding-top: 50px; /* Adjust top padding on small screens */
+            }
         }
     </style>
 </head>
@@ -45,11 +59,9 @@
                 <p class="subtitle is-size-4">Cash per second: $<span id="cps">0</span></p>
                 <div class="columns is-centered">
                     <div class="column is-one-third">
-                        <p class="subtitle is-size-5">Upgrades Purchased: <span id="upgrades">0</span></p>
                         <button class="button is-info is-fullwidth" onclick="purchaseUpgrade()">Purchase Upgrade ($10)</button>
                     </div>
                 </div>
-                <!-- Removed progress bar -->
             </div>
         </div>
     </section>
@@ -68,3 +80,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
