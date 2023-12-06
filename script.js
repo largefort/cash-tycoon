@@ -6,6 +6,7 @@ let upgradeCost = 10;
 
 let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
 const targetFPS = 60;
+let lastTimestamp = 0;
 
 function updateDisplay() {
     document.getElementById('cash').textContent = cash.toFixed(2);
@@ -24,7 +25,7 @@ function purchaseUpgrade() {
     if (cash >= upgradeCost) {
         cash -= upgradeCost;
         upgrades++;
-        cps += 0.1 + (0.01 * upgrades);
+        cps += 0.1 + (0.02 * upgrades);
         upgradeCost += 5 + (2 * upgrades);
         updateDisplay();
         saveGameState();
@@ -56,7 +57,7 @@ function loadGameState() {
 function updateLeaderboard() {
     leaderboard.push({ cash: cash, timestamp: new Date() });
     leaderboard.sort((a, b) => b.cash - a.cash);
-    if (leaderboard.length > 10) { // Keep only top 10 entries
+    if (leaderboard.length > 10) {
         leaderboard = leaderboard.slice(0, 10);
     }
     localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
@@ -64,12 +65,16 @@ function updateLeaderboard() {
 
 function displayLeaderboard() {
     const leaderboardElement = document.getElementById('leaderboard');
-    leaderboardElement.innerHTML = '<ol>' + 
-        leaderboard.map(entry => `<li>${entry.cash.toFixed(2)} - ${new Date(entry.timestamp).toLocaleString()}</li>`).join('') + 
-        '</ol>';
+    if (leaderboardElement) {
+        leaderboardElement.innerHTML = '<ol>' + 
+            leaderboard.map(entry => `<li>${entry.cash.toFixed(2)} - ${new Date(entry.timestamp).toLocaleString()}</li>`).join('') + 
+            '</ol>';
+    }
 }
 
 function gameLoop(timestamp) {
+    if (!lastTimestamp) lastTimestamp = timestamp;
+
     const deltaTime = timestamp - lastTimestamp;
     if (deltaTime >= 1000 / targetFPS) {
         earnPerSecond();
