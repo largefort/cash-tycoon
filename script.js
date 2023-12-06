@@ -4,17 +4,18 @@ let cps = parseFloat(localStorage.getItem('cps')) || 0;
 let upgrades = parseInt(localStorage.getItem('upgrades')) || 0;
 let upgradeCost = 10;
 
-let lastTimestamp = 0;
-const targetFPS = 60; // Set the target frame rate
+let leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || [];
+const targetFPS = 60;
 
 function updateDisplay() {
     document.getElementById('cash').textContent = cash.toFixed(2);
     document.getElementById('cps').textContent = cps.toFixed(2);
     document.getElementById('upgrades').textContent = upgrades;
+    displayLeaderboard();
 }
 
 function clickCash() {
-    cash += clickValue + (0.1 * upgrades); // More cash per click with more upgrades
+    cash += clickValue + (0.1 * upgrades);
     updateDisplay();
     saveGameState();
 }
@@ -23,8 +24,8 @@ function purchaseUpgrade() {
     if (cash >= upgradeCost) {
         cash -= upgradeCost;
         upgrades++;
-        cps += 0.1 + (0.02 * upgrades); // Incremental increase in cps
-        upgradeCost += 5 + (2 * upgrades); // Less steep scaling for upgrade costs
+        cps += 0.1 + (0.01 * upgrades);
+        upgradeCost += 5 + (2 * upgrades);
         updateDisplay();
         saveGameState();
     } else {
@@ -33,7 +34,7 @@ function purchaseUpgrade() {
 }
 
 function earnPerSecond() {
-    cash += cps / targetFPS; // Adjusted for the target frame rate
+    cash += cps / targetFPS;
     updateDisplay();
     saveGameState();
 }
@@ -42,23 +43,46 @@ function saveGameState() {
     localStorage.setItem('cash', cash);
     localStorage.setItem('cps', cps);
     localStorage.setItem('upgrades', upgrades);
+    updateLeaderboard();
+}
+
+function loadGameState() {
+    cash = parseFloat(localStorage.getItem('cash')) || 0;
+    cps = parseFloat(localStorage.getItem('cps')) || 0;
+    upgrades = parseInt(localStorage.getItem('upgrades')) || 0;
+    updateDisplay();
+}
+
+function updateLeaderboard() {
+    leaderboard.push({ cash: cash, timestamp: new Date() });
+    leaderboard.sort((a, b) => b.cash - a.cash);
+    if (leaderboard.length > 10) { // Keep only top 10 entries
+        leaderboard = leaderboard.slice(0, 10);
+    }
+    localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
+}
+
+function displayLeaderboard() {
+    const leaderboardElement = document.getElementById('leaderboard');
+    leaderboardElement.innerHTML = '<ol>' + 
+        leaderboard.map(entry => `<li>${entry.cash.toFixed(2)} - ${new Date(entry.timestamp).toLocaleString()}</li>`).join('') + 
+        '</ol>';
 }
 
 function gameLoop(timestamp) {
     const deltaTime = timestamp - lastTimestamp;
-
-    // Check if enough time has passed to update at the target FPS
     if (deltaTime >= 1000 / targetFPS) {
         earnPerSecond();
         lastTimestamp = timestamp;
     }
-
     requestAnimationFrame(gameLoop);
 }
 
-// Start the game loop
-requestAnimationFrame(gameLoop);
+document.addEventListener('DOMContentLoaded', function() {
+    loadGameState();
+    document.querySelector('.button.is-success').addEventListener('click', clickCash);
+    document.querySelector('.button.is-info').addEventListener('click', purchaseUpgrade);
+    displayLeaderboard();
+});
 
-// Handle clicks
-document.getElementById('clickButton').addEventListener('click', clickCash);
-document.getElementById('upgradeButton').addEventListener('click', purchaseUpgrade);
+requestAnimationFrame(gameLoop);
