@@ -7,7 +7,19 @@
     <link rel="stylesheet" href="styles.css">
     <title>Idle Cash Tycoon</title>
     <script>
+        // Define game variables
+        let currentCash = 0;
+        let clickPower = 1;
+        let cashPerSecond = 0;
+        let upgradesPurchased = 0;
+
         window.targetFPS = 60;
+
+        // Function to update the UI
+        function updateUI() {
+            document.getElementById('cash').innerText = currentCash.toFixed(2);
+            document.getElementById('cps').innerText = cashPerSecond.toFixed(2);
+        }
     </script>
     <style>
         html, body {
@@ -29,6 +41,18 @@
         .bottom-tabs a {
             color: white;
         }
+
+        .info-button {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+        }
+
+        .info-button button {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+        }
     </style>
 </head>
 <body>
@@ -36,22 +60,36 @@
         <div class="hero-body">
             <div class="container has-text-centered">
                 <h1 class="title is-size-1">Idle Cash Tycoon</h1>
-                <p class="subtitle is-size-4">Current Cash: $<span id="cash">0</span></p>
+                <p class="subtitle is-size-4">Current Cash: $<span id="cash">0.00</span></p>
                 <div class="columns is-centered">
                     <div class="column is-one-third">
                         <button class="button is-success is-fullwidth" onclick="clickCash()">Click to Earn Cash</button>
                     </div>
                 </div>
-                <p class="subtitle is-size-4">Cash per second: $<span id="cps">0</span></p>
+                <p class="subtitle is-size-4">Cash per second: $<span id="cps">0.00</span></p>
                 <div class="columns is-centered">
                     <div class="column is-one-third">
                         <p class="subtitle is-size-5">Upgrades Purchased: <span id="upgrades">0</span></p>
-                        <button class="button is-info is-fullwidth" onclick="purchaseUpgrade()">Purchase Upgrade ($10)</button>
+                        <button class="button is-info is-fullwidth" onclick="purchaseUpgrade('Click Power', 10, 2)">Click Power ($10)</button>
+                        <button class="button is-info is-fullwidth" onclick="purchaseUpgrade('Auto Clicker', 50, 5)">Auto Clicker ($50)</button>
+                        <!-- Add more upgrade buttons as needed -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Optional: Add an info modal for more information -->
+    <div class="modal" id="infoModal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
+                <p>Idle Cash Tycoon is a simple clicker game. Click the button to earn cash and purchase upgrades to increase your earnings per second.</p>
+                <button class="button is-danger" onclick="closeInfoModal()">Close</button>
+            </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close" onclick="closeInfoModal()"></button>
+    </div>
 
     <!-- Bottom Navigation Tabs -->
     <div class="bottom-tabs">
@@ -64,7 +102,10 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Optional: Add a floating action button for information -->
+    <div class="info-button">
+        <button class="button is-info is-rounded" onclick="openInfoModal()">ℹ️ Info</button>
+    </div>
 
     <!-- AdMob Plus Cordova Plugin Integration -->
     <script>
@@ -81,6 +122,38 @@
                 console.error('Banner Ad failed to load', error);
             });
         }, false);
+
+        // Optional: JavaScript functions for the added features
+        function clickCash() {
+            currentCash += clickPower;
+            updateUI();
+        }
+
+        function purchaseUpgrade(upgradeName, cost, multiplier) {
+            if (currentCash >= cost) {
+                currentCash -= cost;
+                clickPower *= multiplier;
+                upgradesPurchased++;
+                updateUI();
+                alert(`You've purchased the ${upgradeName} upgrade!`);
+            } else {
+                alert("Not enough cash to purchase this upgrade!");
+            }
+        }
+
+        function openInfoModal() {
+            document.getElementById('infoModal').classList.add('is-active');
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').classList.remove('is-active');
+        }
+
+        // Optional: Add an automatic income feature
+        setInterval(function() {
+            currentCash += cashPerSecond;
+            updateUI();
+        }, 1000);
     </script>
 </body>
 </html>
